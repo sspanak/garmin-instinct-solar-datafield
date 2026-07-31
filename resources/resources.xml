@@ -1,0 +1,22 @@
+<resources>
+	<fitContributions>
+		<fitField
+			id="0"
+			displayInChart="true"
+			sortOrder="0"
+			precision="0"
+			chartTitle="@Strings.SolarLabel"
+			dataLabel="@Strings.SolarLabel"
+			unitLabel="@Strings.SolarUnit"
+			fillColor="#ea9b4c"
+			/>
+		<fitField
+			id="1"
+			displayInActivitySummary="true"
+			sortOrder="1"
+			precision="0"
+			dataLabel="@Strings.SolarAvgLabel"
+			unitLabel="@Strings.SolarUnit"
+			/>
+	</fitContributions>
+</resources>
