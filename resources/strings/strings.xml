@@ -1,6 +1,7 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
-    <string id="AppName">Solar Intensity</string>
+    <string id="AppName">Solar Energy</string>
+    <string id="BatteryLabel">Battery</string>
     <string id="SolarLabel">Solar Intensity</string>
     <string id="SolarAvgLabel">Avg Solar Intensity</string>
-    <string id="SolarUnit">%</string>
+    <string id="Percent">%</string>
 </strings>
