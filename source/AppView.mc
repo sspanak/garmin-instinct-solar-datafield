@@ -12,6 +12,9 @@ class AppView extends WatchUi.SimpleDataField {
 	const SOLAR_FIELD_ID = 1;
 	const SOLAR_AVG_FIELD_ID = 2;
 
+	hidden var has_battery;
+	hidden var has_solar;
+
 	hidden var battery_field;
 	hidden var solar_field;
 	hidden var solar_avg_field;
@@ -50,6 +53,10 @@ class AppView extends WatchUi.SimpleDataField {
 
 		battery_last = -1;
 		solar_last = -1;
+
+		var stats = System.getSystemStats();
+		has_battery = stats has :battery;
+		has_solar = stats has :solarIntensity;
 	}
 
 	
@@ -59,8 +66,8 @@ class AppView extends WatchUi.SimpleDataField {
 	}
 
 
-	function save_battery(battery_current as Numeric) {
-		if (battery_current != battery_last) {
+	function save_battery(battery_current as Numeric or Null) {
+		if (battery_current != null && battery_current != battery_last) {
 			battery_field.setData(battery_current);
 			battery_last = battery_current;
 		}
@@ -88,14 +95,16 @@ class AppView extends WatchUi.SimpleDataField {
 	
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
 		var stats = System.getSystemStats();
-		var solar = stats.solarIntensity;
+		var battery = has_battery ? stats.battery.toNumber() : null;
+		var solar = has_solar ? stats.solarIntensity.toNumber() : null;
+
 		if (solar == null) {
 			return "---";
 		} else if (solar < 0) {
 			solar = 0;
 		}
 
-		save_battery(stats.battery.toNumber());
+		save_battery(battery);
 		save_solar(solar);
 		save_solar_avg(info, solar);
 
